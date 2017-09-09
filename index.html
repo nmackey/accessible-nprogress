@@ -19,7 +19,7 @@
   <header class='page-header'>
     <span class='nprogress-logo fade out'></span>
     <h1>NProgress<i>.js</i></h1>
-    <p class='fade out brief big'>A nanoscopic progress bar. Featuring realistic
+    <p class='fade out brief'>A nanoscopic progress bar. Featuring realistic
     trickle animations to convince your users that something is happening!</p>
   </header>
 
@@ -53,11 +53,9 @@
     <div class='actions'>
       <a href='https://github.com/rstacruz/nprogress' class='button primary big'>
         Download
-        v<span class='version'></span>
       </a>
       <p class='brief'>Perfect for Turbolinks, Pjax, and other Ajax-heavy apps.</p>
     </div>
-    <div class='hr-rule'></div>
     <div class='share-buttons'>
       <iframe src="http://ghbtns.com/github-btn.html?user=rstacruz&repo=nprogress&type=watch&count=true"
           allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe>
@@ -68,9 +66,8 @@
 
   <script>
     $('body').show();
-    $('.version').text(NProgress.version);
     NProgress.start();
-    setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1000);
+    setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 600);
 
     $("#b-0").click(function() { NProgress.start(); });
     $("#b-40").click(function() { NProgress.set(0.4); });

@@ -1,7 +1,23 @@
-i, b {
-  font-style: normal;
-  font-weight: 400;
-}
+/*
+ * body
+ *   .page-header
+ *     .nprogress-logo
+ *     h1
+ *     p.brief
+ *
+ *   .contents
+ *     .controls
+ *       p
+ *         button.button
+ *
+ *   .actions
+ *     a.button.primary.big
+ *     p.brief
+ *
+ *   .hr-rule
+ *
+ *   .share-buttons
+ */
 
 body, html {
   padding: 0;
@@ -13,9 +29,9 @@ body {
 }
 
 body, td, input, textarea {
-  font-family: source sans pro, sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-size: 15px;
+  line-height: 1.62;
   color: #222;
 }
 
@@ -28,16 +44,26 @@ button {
   -webkit-font-smoothing: antialiased;
 }
 
+i, b {
+  font-style: normal;
+  font-weight: 400;
+}
+
+/*
+ * Logo
+ */
+
 .nprogress-logo {
   display: inline-block;
 
-  width: 100px;
-  height: 20px;
+  width: 96px;
+  height: 16px;
   border: solid 4px #2d9;
-  border-radius: 10px;
+  border-radius: 20px;
 
   position: relative;
 }
+
 .nprogress-logo:after {
   content: '';
   display: block;
@@ -49,8 +75,12 @@ button {
   width: 40%;
 
   background: #2d9;
-  border-radius: 3px;
+  border-radius: 8px;
 }
+
+/*
+ * Fade
+ */
 
 .fade {
   transition: all 300ms linear 700ms;
@@ -63,8 +93,12 @@ button {
 }
 
 .fade.out {
-  opacity: 0;
+  opacity: .2;
 }
+
+/*
+ * Button
+ */
 
 button {
   margin: 0;
@@ -82,7 +116,7 @@ button {
   border-radius: 2px;
 
   padding: 8px 10px;
-  font-weight: 700;
+  font-weight: 400;
   text-align: left;
 }
 
@@ -108,37 +142,65 @@ button {
   box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.6);
 }
 
+/*
+ * Controls
+ */
+
 .controls {
   text-align: left;
   margin: 0 auto;
-  max-width: 300px;
+  max-width: 400px;
   color: #666;
+  font-size: 0.86em;
+  box-shadow: 0 8px 12px rgba(60, 90, 120, 0.1);
+  border-radius: 4px;
+}
+
+.controls > p {
+  margin: 0;
+  padding: 16px;
+}
+
+.controls > p + p {
+  border-top: solid 1px #e8eaef;
 }
 
 .controls .button {
   width: 40px;
-  margin-right: 10px;
+  margin-right: 8px;
   text-align: center;
 }
 
+/* "NProgress" */
 .controls i {
   color: #999;
+  font-size: 1.2em;
 }
 
+/* ".start()" */
 .controls b {
   color: #29d;
   font-weight: 700;
+  font-size: 1.2em;
 }
 
-.controls {
-  font-size: 0.9em;
-}
+/*
+ * Header
+ */
 
 .page-header {
   text-align: center;
-  max-width: 400px;
+  max-width: 460px;
   padding: 3em 20px;
   margin: 0 auto;
+  padding: 16px;
+  margin-top: 48px;
+}
+
+@media (max-width: 480px) {
+  .page-header {
+    margin-top: 0;
+  }
 }
 
 .page-header h1 {
@@ -151,19 +213,14 @@ button {
 }
 
 p.brief {
-  line-height: 1.4;
-  font-style: italic;
   color: #888;
 }
 
-p.brief.big {
-  font-size: 1.1em;
-}
-
-@media (min-width: 480px) {
+@media (min-width: 481px) {
   .page-header h1 {
     margin-top: 1em;
     margin-bottom: 0.4em;
+    font-size: 3em;
   }
 }
 
@@ -173,42 +230,30 @@ p.brief.big {
   font-weight: 200;
 }
 
-@media (min-width: 480px) {
-  .page-header h1 {
-    font-size: 3em; }
-  .page-header {
-    padding: 4.5em 20px 3.5em 20px;
-  }
-}
-
 /* --- */
 
 .actions {
   text-align: center;
-  margin: 2em 0;
+  margin: 16px 0;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 481px) {
   .actions {
-    margin: 4.5em 0 3.5em 0;
+    margin: 32px 0;
   }
 }
 
 .big.button {
-  padding-left: 30px;
-  padding-right: 30px;
-  font-size: 1.1em;
+  padding-left: 32px;
+  padding-right: 32px;
+  font-size: 1.2em;
 }
 
 
-/* ---- */
+/*
+ * Share buttons
+ */
 
-div.hr-rule {
-  height: 1px;
-  width: 100px;
-  margin: 40px auto;
-  background: #ddd;
-}
 .share-buttons {
   margin: 0 auto;
   text-align: center;
