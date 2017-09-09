@@ -49,6 +49,17 @@ i, b {
   font-weight: 400;
 }
 
+a,
+a:visited {
+  text-decoration: none;
+  color: #29d;
+}
+
+a:hover,
+a:focus {
+  color: #18c;
+}
+
 /*
  * Logo
  */
@@ -258,4 +269,26 @@ p.brief {
 .share-buttons {
   margin: 0 auto;
   text-align: center;
+}
+
+@media (min-width: 481px) {
+  .share-buttons {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    text-align: right;
+  }
+}
+
+/*
+ * Line
+ */
+
+.hr-rule::before {
+  content: '';
+  display: block;
+  width: 96px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #eee 20%, #eee 80%, transparent);
+  margin: 24px auto 16px auto;
 }
