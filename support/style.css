@@ -162,7 +162,7 @@ button {
 }
 
 .controls > p + p {
-  border-top: solid 1px #e8eaef;
+  padding-top: 0;
 }
 
 .controls .button {
@@ -194,7 +194,7 @@ button {
   padding: 3em 20px;
   margin: 0 auto;
   padding: 16px;
-  margin-top: 48px;
+  margin-top: 16px;
 }
 
 @media (max-width: 480px) {
@@ -212,17 +212,18 @@ button {
   margin: 0;
 }
 
-p.brief {
-  color: #888;
-}
-
 @media (min-width: 481px) {
   .page-header h1 {
-    margin-top: 1em;
+    margin-top: 32px;
     margin-bottom: 0.4em;
     font-size: 3em;
   }
 }
+
+p.brief {
+  color: #888;
+}
+
 
 .page-header h1 i {
   color: #aaa;
