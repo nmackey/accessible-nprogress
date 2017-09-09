@@ -5,13 +5,8 @@
   <title>NProgress: slim progress bars in JavaScript</title>
   <link href='support/style.css' rel='stylesheet' />
   <link href='nprogress.css' rel='stylesheet' />
-
   <meta name="viewport" content="width=device-width">
-  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700,400italic' rel='stylesheet' type='text/css'>
-  
-  <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
   <script src='nprogress.js'></script>
-
   <script>if(location.hostname.match(/ricostacruz\.com$/)){var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-20473929-1"]),_gaq.push(["_trackPageview"]),function(){var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)}()}</script>
 </head>
 
@@ -57,8 +52,8 @@
       <a href='https://github.com/rstacruz/nprogress' class='button primary big'>
         Download
       </a>
-      <div class='hr-rule'></div>
-      <p class='brief linkout'>
+      <div class='hr-rule _pop out'></div>
+      <p class='brief linkout _pop out'>
       <span class='emoji'>🎉</span> Psst! I also write great references for web devs at
       <a href='https://ricostacruz.com/cheatsheets/'>Cheatsheets</a>.
       </p>
@@ -73,16 +68,36 @@
   </div>
 
   <script>
-    $('body').show();
-    NProgress.start();
-    setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 600);
+    document.body.style.display = 'block'
 
-    $("#b-0").click(function() { NProgress.start(); });
-    $("#b-40").click(function() { NProgress.set(0.4); });
-    $("#b-inc").click(function() { NProgress.inc(); });
-    $("#b-100").click(function() { NProgress.done(); });
+    NProgress.start()
+
+    setTimeout(function() {
+      NProgress.done()
+      var els = [].slice.call(document.querySelectorAll('.out'))
+      els.forEach(function (el) {
+        el.className = el.className.replace(' out', '')
+      })
+    }, 600)
+
+    on(id('b-0'), 'click', function () { NProgress.start(); })
+    on(id('b-40'), 'click', function () { NProgress.set(0.4); })
+    on(id('b-inc'), 'click', function () { NProgress.inc(); })
+    on(id('b-100'), 'click', function () { NProgress.done(); })
+
+    function id (val) {
+      return document.getElementById(val)
+    }
+
+    function on (el, event, handler) {
+      if (el.addEventListener) {
+        el.addEventListener(event, handler)
+      } else {
+        el.attachEvent('on' + event, function () {
+          handler.call(el)
+        })
+      }
+    }
   </script>
-
-  <script>var HN=[];HN.factory=function(e){return function(){HN.push([e].concat(Array.prototype.slice.call(arguments,0)))};},HN.on=HN.factory("on"),HN.once=HN.factory("once"),HN.off=HN.factory("off"),HN.emit=HN.factory("emit"),HN.load=function(){var e="hn-button.js";if(document.getElementById(e))return;var t=document.createElement("script");t.id=e,t.src="//hn-button.herokuapp.com/hn-button.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n)},HN.load();</script>
 </body>
 </html>
