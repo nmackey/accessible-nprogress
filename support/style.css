@@ -311,3 +311,24 @@ p.brief {
   background: linear-gradient(to right, transparent, #eee 20%, #eee 80%, transparent);
   margin: 24px auto 16px auto;
 }
+
+.code-sponsor {
+  text-align: center;
+  margin: 20px auto 0 auto;
+}
+
+.code-sponsor > span {
+  display: block;
+  margin: 0 auto -10px auto;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #2d9;
+  font-size: 0.7em;
+  font-weight: normal;
+}
+
+.code-sponsor > div > iframe {
+  display: inline-block;
+  opacity: 0.8;
+}
