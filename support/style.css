@@ -314,7 +314,7 @@ p.brief {
 
 .code-sponsor {
   text-align: center;
-  margin: 20px auto 0 auto;
+  margin: 0 auto 0 auto;
 }
 
 .code-sponsor > span {
@@ -331,4 +331,8 @@ p.brief {
 .code-sponsor > div > iframe {
   display: inline-block;
   opacity: 0.8;
+}
+
+.code-sponsor > div:hover > iframe {
+  opacity: 1;
 }
