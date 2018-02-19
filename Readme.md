@@ -1,7 +1,7 @@
 NProgress
 =========
 
-[![Status](https://api.travis-ci.org/rstacruz/nprogress.svg?branch=master)](http://travis-ci.org/rstacruz/nprogress) 
+[![Status](https://api.travis-ci.org/rstacruz/nprogress.svg?branch=master)](http://travis-ci.org/rstacruz/nprogress)
 [![npm version](https://img.shields.io/npm/v/nprogress.png)](https://npmjs.org/package/nprogress "View this project on npm")
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/nprogress/badge?style=rounded)](https://www.jsdelivr.com/package/npm/nprogress)
 
@@ -26,8 +26,8 @@ NProgress is available via [bower] and [npm].
 
 Also available via [unpkg] CDN:
 
-- https://unpkg.com/nprogress@0.2.0/nprogress.js
-- https://unpkg.com/nprogress@0.2.0/nprogress.css
+- https://unpkg.com/nprogress@0.3.0/nprogress.js
+- https://unpkg.com/nprogress@0.3.0/nprogress.css
 
 [bower]: http://bower.io/search/?q=nprogress
 [npm]: https://www.npmjs.org/package/nprogress
@@ -44,7 +44,7 @@ NProgress.done();
 ~~~
 
 ### Turbolinks (version 5+)
-Ensure you're using Turbolinks 5+, and use 
+Ensure you're using Turbolinks 5+, and use
 this: (explained [here](https://github.com/rstacruz/nprogress/issues/8#issuecomment-239107109))
 
 ~~~ js
@@ -58,7 +58,7 @@ $(document).on('turbolinks:render', function() {
 ~~~
 
 ### Turbolinks (version 3 and below)
-Ensure you're using Turbolinks 1.3.0+, and use 
+Ensure you're using Turbolinks 1.3.0+, and use
 this: (explained [here](https://github.com/rstacruz/nprogress/issues/8#issuecomment-23010560))
 
 ~~~ js
