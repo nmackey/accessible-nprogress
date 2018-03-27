@@ -1,4 +1,4 @@
-/* NProgress, (c) 2013, 2014 Rico Sta. Cruz - http://ricostacruz.com/nprogress
+/* Accessible NProgress, (c) 2018 Nicholas Mackey - https://github.com/nmackey/accessible-nprogress
  * @license MIT */
 
 ;(function(root, factory) {
@@ -14,21 +14,20 @@
 })(this, function() {
   var NProgress = {};
 
-  NProgress.version = '0.2.0';
+  NProgress.version = '0.3.0';
 
   var Settings = NProgress.settings = {
     minimum: 0.08,
-    easing: 'ease',
+    easing: 'linear',
     positionUsing: '',
     speed: 200,
     trickle: true,
-    trickleRate: 0.02,
-    trickleSpeed: 800,
+    trickleSpeed: 200,
     showSpinner: true,
-    barSelector: '[role="bar"]',
-    spinnerSelector: '[role="spinner"]',
+    barSelector: 'div.bar',
+    spinnerSelector: 'div.spinner',
     parent: 'body',
-    template: '<div class="bar" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
+    template: '<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="1"><div class="peg"></div></div><div class="spinner" role="progressbar" aria-valuemin="0" aria-valuemax="1"><div class="spinner-icon"></div></div>'
   };
 
   /**
@@ -79,20 +78,21 @@
       if (Settings.positionUsing === '') Settings.positionUsing = NProgress.getPositioningCSS();
 
       // Add transition
+      bar.setAttribute('aria-valuenow', n);
       css(bar, barPositionCSS(n, speed, ease));
 
       if (n === 1) {
         // Fade out
-        css(progress, { 
-          transition: 'none', 
-          opacity: 1 
+        css(progress, {
+          transition: 'none',
+          opacity: 1
         });
         progress.offsetWidth; /* Repaint */
 
         setTimeout(function() {
-          css(progress, { 
-            transition: 'all ' + speed + 'ms linear', 
-            opacity: 0 
+          css(progress, {
+            transition: 'all ' + speed + 'ms linear',
+            opacity: 0
           });
           setTimeout(function() {
             NProgress.remove();
@@ -161,9 +161,15 @@
 
     if (!n) {
       return NProgress.start();
+    } else if(n > 1) {
+      return;
     } else {
       if (typeof amount !== 'number') {
-        amount = (1 - n) * clamp(Math.random() * n, 0.1, 0.95);
+        if (n >= 0 && n < 0.2) { amount = 0.1; }
+        else if (n >= 0.2 && n < 0.5) { amount = 0.04; }
+        else if (n >= 0.5 && n < 0.8) { amount = 0.02; }
+        else if (n >= 0.8 && n < 0.99) { amount = 0.005; }
+        else { amount = 0; }
       }
 
       n = clamp(n + amount, 0, 0.994);
@@ -172,7 +178,7 @@
   };
 
   NProgress.trickle = function() {
-    return NProgress.inc(Math.random() * Settings.trickleRate);
+    return NProgress.inc();
   };
 
   /**
@@ -220,7 +226,7 @@
     if (NProgress.isRendered()) return document.getElementById('nprogress');
 
     addClass(document.documentElement, 'nprogress-busy');
-    
+
     var progress = document.createElement('div');
     progress.id = 'nprogress';
     progress.innerHTML = Settings.template;
@@ -229,7 +235,7 @@
         perc     = fromStart ? '-100' : toBarPerc(NProgress.status || 0),
         parent   = document.querySelector(Settings.parent),
         spinner;
-    
+
     css(bar, {
       transition: 'all 0 linear',
       transform: 'translate3d(' + perc + '%,0,0)'
@@ -340,7 +346,7 @@
 
   var queue = (function() {
     var pending = [];
-    
+
     function next() {
       var fn = pending.shift();
       if (fn) {
@@ -355,10 +361,10 @@
   })();
 
   /**
-   * (Internal) Applies css properties to an element, similar to the jQuery 
+   * (Internal) Applies css properties to an element, similar to the jQuery
    * css method.
    *
-   * While this helper does assist with vendor prefixed property names, it 
+   * While this helper does assist with vendor prefixed property names, it
    * does not perform any manipulation of values prior to setting styles.
    */
 
@@ -399,7 +405,7 @@
 
     return function(element, properties) {
       var args = arguments,
-          prop, 
+          prop,
           value;
 
       if (args.length == 2) {
@@ -430,7 +436,7 @@
     var oldList = classList(element),
         newList = oldList + name;
 
-    if (hasClass(oldList, name)) return; 
+    if (hasClass(oldList, name)) return;
 
     // Trim the opening space.
     element.className = newList.substring(1);
@@ -454,13 +460,13 @@
   }
 
   /**
-   * (Internal) Gets a space separated list of the class names on the element. 
-   * The list is wrapped with a single space on each end to facilitate finding 
+   * (Internal) Gets a space separated list of the class names on the element.
+   * The list is wrapped with a single space on each end to facilitate finding
    * matches within the list.
    */
 
   function classList(element) {
-    return (' ' + (element.className || '') + ' ').replace(/\s+/gi, ' ');
+    return (' ' + (element && element.className || '') + ' ').replace(/\s+/gi, ' ');
   }
 
   /**
@@ -473,4 +479,3 @@
 
   return NProgress;
 });
-
