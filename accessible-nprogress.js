@@ -1,4 +1,4 @@
-/* NProgress, (c) 2013, 2014 Rico Sta. Cruz - http://ricostacruz.com/nprogress
+/* Accessible NProgress, (c) 2018 Nicholas Mackey - https://github.com/nmackey/accessible-nprogress
  * @license MIT */
 
 ;(function(root, factory) {

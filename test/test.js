@@ -11,7 +11,7 @@
 
     beforeEach(function() {
       $ = root.jQuery || require('jquery');
-      NProgress = root.NProgress || require('../nprogress');
+      NProgress = root.NProgress || require('../accessible-nprogress');
 
       this.settings = $.extend({}, NProgress.settings);
     });

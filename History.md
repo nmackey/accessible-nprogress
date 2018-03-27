@@ -1,6 +1,13 @@
-## [v0.3.0] - May 13, 2015
+## [v0.3.0] - Mar 27, 2018
 
-Fix accessibility issues
+This is a feature release for fixing accessibility issues and creating a new npm package
+
+ * Fork from https://github.com/rstacruz/nprogress
+ * Fix accessibility issues
+ * Update readme for new repo
+ * Rename files
+ * Remove bower support
+ * new npm package
 
 ## [v0.2.0] - May 13, 2015
 
@@ -115,5 +122,5 @@ Initial release.
 [v0.1.1]: https://github.com/rstacruz/nprogress/compare/v0.1.0...v0.1.1
 [#53]: https://github.com/rstacruz/nprogress/issues/53
 [v0.2.0]: https://github.com/rstacruz/nprogress/compare/v0.1.6...v0.2.0
-[v0.3.0]: https://github.com/rstacruz/nprogress/compare/v0.2.0...v0.3.0
+[v0.3.0]: https://github.com/nmackey/accessible-nprogress/compare/v0.2.0...v0.3.0
 [@drodil]: https://github.com/drodil
