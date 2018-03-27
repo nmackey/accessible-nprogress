@@ -1,37 +1,33 @@
-NProgress
+Accessible NProgress
 =========
 
-[![Status](https://api.travis-ci.org/rstacruz/nprogress.svg?branch=master)](http://travis-ci.org/rstacruz/nprogress) 
-[![npm version](https://img.shields.io/npm/v/nprogress.png)](https://npmjs.org/package/nprogress "View this project on npm")
-[![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/nprogress/badge?style=rounded)](https://www.jsdelivr.com/package/npm/nprogress)
+[![Status](https://api.travis-ci.org/nmackey/accessible-nprogress.svg?branch=master)](https://travis-ci.org/nmackey/accessible-nprogress)
+[![npm version](https://img.shields.io/npm/v/accessible-nprogress.png)](https://npmjs.org/package/accessible-nprogress "View this project on npm")
+[![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/accessible-nprogress/badge?style=rounded)](https://www.jsdelivr.com/package/npm/accessible-nprogress)
+
+Forked from https://github.com/rstacruz/nprogress
+
+I have left most of the original README intact for usage purposes, but have not tested with most of the integrations listed below.
 
 > Minimalist progress bar
 
-Slim progress bars for Ajax'y applications. Inspired by Google, YouTube, and
-Medium.
+Slim progress bars for Ajax'y applications. Inspired by Google, YouTube, and Medium.
 
 Installation
 ------------
 
-Add [nprogress.js] and [nprogress.css] to your project.
+Add [accessible-nprogress.min.js] and [accessible-nprogress.min.css] to your project.
 
 ```html
-<script src='nprogress.js'></script>
-<link rel='stylesheet' href='nprogress.css'/>
+<script src='accessible-nprogress.min.js'></script>
+<link rel='stylesheet' href='accessible-nprogress.min.css'/>
 ```
 
-NProgress is available via [bower] and [npm].
+Accessible NProgress is available via [npm].
 
-    $ npm install --save nprogress
+    $ npm install --save accessible-nprogress
 
-Also available via [unpkg] CDN:
-
-- https://unpkg.com/nprogress@0.2.0/nprogress.js
-- https://unpkg.com/nprogress@0.2.0/nprogress.css
-
-[bower]: http://bower.io/search/?q=nprogress
-[npm]: https://www.npmjs.org/package/nprogress
-[unpkg]: https://unpkg.com/
+[npm]: https://www.npmjs.org/package/accessible-nprogress
 
 Basic usage
 -----------
@@ -44,7 +40,7 @@ NProgress.done();
 ~~~
 
 ### Turbolinks (version 5+)
-Ensure you're using Turbolinks 5+, and use 
+Ensure you're using Turbolinks 5+, and use
 this: (explained [here](https://github.com/rstacruz/nprogress/issues/8#issuecomment-239107109))
 
 ~~~ js
@@ -58,7 +54,7 @@ $(document).on('turbolinks:render', function() {
 ~~~
 
 ### Turbolinks (version 3 and below)
-Ensure you're using Turbolinks 1.3.0+, and use 
+Ensure you're using Turbolinks 1.3.0+, and use
 this: (explained [here](https://github.com/rstacruz/nprogress/issues/8#issuecomment-23010560))
 
 ~~~ js
@@ -78,17 +74,14 @@ $(document).on('pjax:end',   function() { NProgress.done();  });
 Ideas
 -----
 
- * Add progress to your Ajax calls! Bind it to the jQuery `ajaxStart` and
- `ajaxStop` events.
+ * Add progress to your Ajax calls! Bind it to the jQuery(3+) `ajaxStart` and `ajaxStop` events.
 
- * Make a fancy loading bar even without Turbolinks/Pjax! Bind it to
- `$(document).ready` and `$(window).load`.
+ * Make a fancy loading bar even without Turbolinks/Pjax! Bind it to `$(document).ready` and `$(window).load`.
 
 Advanced usage
 --------------
 
-__Percentages:__ To set a progress percentage, call `.set(n)`, where *n* is a
-number between `0..1`.
+__Percentages:__ To set a progress percentage, call `.set(n)`, where *n* is a number between `0..1`.
 
 ~~~ js
 NProgress.set(0.0);     // Sorta same as .start()
@@ -96,9 +89,7 @@ NProgress.set(0.4);
 NProgress.set(1.0);     // Sorta same as .done()
 ~~~
 
-__Incrementing:__ To increment the progress bar, just use `.inc()`. This
-increments it with a random amount. This will never get to 100%: use it for
-every image load (or similar).
+__Incrementing:__ To increment the progress bar, just use `.inc()`. This increments it with a random amount. This will never get to 100%: use it for every image load (or similar).
 
 ~~~ js
 NProgress.inc();
@@ -110,9 +101,7 @@ If you want to increment by a specific value, you can pass that as a parameter:
 NProgress.inc(0.2);    // This will get the current status value and adds 0.2 until status is 0.994
 ~~~
 
-__Force-done:__ By passing `true` to `done()`, it will show the progress bar
-even if it's not being shown. (The default behavior is that *.done()* will not
-    do anything if *.start()* isn't called)
+__Force-done:__ By passing `true` to `done()`, it will show the progress bar even if it's not being shown. (The default behavior is that *.done()* will not do anything if *.start()* isn't called)
 
 ~~~ js
 NProgress.done(true);
@@ -132,8 +121,7 @@ NProgress.configure({ minimum: 0.1 });
 
 #### `template`
 You can change the markup using `template`. To keep the progress
-bar working, keep an element with `role='bar'` in there. See the [default template]
-for reference.
+bar working, keep an element with `class='bar'` in there. See the [default template] for reference.
 
 ~~~ js
 NProgress.configure({
@@ -180,46 +168,26 @@ NProgress.configure({ parent: '#container' });
 Customization
 -------------
 
-Just edit `nprogress.css` to your liking. Tip: you probably only want to find
-and replace occurrences of `#29d`.
+Just edit `nprogress.css` to your liking. Tip: you probably only want to find and replace occurrences of `#29d`.
 
-The included CSS file is pretty minimal... in fact, feel free to scrap it and
-make your own!
+The included CSS file is pretty minimal... in fact, feel free to scrap it and make your own!
 
 Resources
 ---------
 
  * [New UI Pattern: Website Loading Bars](http://www.usabilitypost.com/2013/08/19/new-ui-pattern-website-loading-bars/) (usabilitypost.com)
 
-Support
+Thanks
 -------
 
 __Bugs and requests__: submit them through the project's issues tracker.<br>
-[![Issues](http://img.shields.io/github/issues/rstacruz/nprogress.svg)]( https://github.com/rstacruz/nprogress/issues )
+[![Issues](https://img.shields.io/github/issues/nmackey/accessible-nprogress.svg)]( https://github.com/nmackey/accessible-nprogress/issues )
 
-__Questions__: ask them at StackOverflow with the tag *nprogress*.<br>
-[![StackOverflow](http://img.shields.io/badge/stackoverflow-nprogress-brightgreen.svg)]( http://stackoverflow.com/questions/tagged/nprogress )
+**Acessible NProgress** © 2018, Nicholas Mackey. Released under the [MIT License].<br>
+Authored and maintained by Nicholas Mackey with help from [contributors].
 
-__Chat__: join us at gitter.im.<br>
-[![Chat](http://img.shields.io/badge/gitter-rstacruz/nprogress-brightgreen.svg)]( https://gitter.im/rstacruz/nprogress )
+[MIT License]: https://mit-license.org/
+[contributors]: https://github.com/nmackey/accessible-nprogress/contributors
 
-[default template]: https://github.com/rstacruz/nprogress/blob/master/nprogress.js#L31
-[Turbolinks]: https://github.com/rails/turbolinks
-[nprogress.js]: http://ricostacruz.com/nprogress/nprogress.js
-[nprogress.css]: http://ricostacruz.com/nprogress/nprogress.css
-
-Thanks
-------
-
-**NProgress** © 2013-2017, Rico Sta. Cruz. Released under the [MIT License].<br>
-Authored and maintained by Rico Sta. Cruz with help from [contributors].
-
-> [ricostacruz.com](http://ricostacruz.com) &nbsp;&middot;&nbsp;
-> GitHub [@rstacruz](https://github.com/rstacruz) &nbsp;&middot;&nbsp;
-> Twitter [@rstacruz](https://twitter.com/rstacruz)
-
-[MIT License]: http://mit-license.org/
-[contributors]: http://github.com/rstacruz/nprogress/contributors
-
-[![](https://img.shields.io/github/followers/rstacruz.svg?style=social&label=@rstacruz)](https://github.com/rstacruz) &nbsp;
-[![](https://img.shields.io/twitter/follow/rstacruz.svg?style=social&label=@rstacruz)](https://twitter.com/rstacruz)
+[![](https://img.shields.io/github/followers/nmackey.svg?style=social&label=@nmackey)](https://github.com/nmackey) &nbsp;
+[![](https://img.shields.io/twitter/follow/nicholas_mackey.svg?style=social&label=@nmackey)](https://twitter.com/nicholas_mackey)

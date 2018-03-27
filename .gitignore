@@ -1,3 +1,21 @@
+# IDE files #
+###################
+.vscode
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+
+# Folders #
+######################
 node_modules
-build
-components
+lib
+test-acceptance/screenshots
+coverage
+
+# Misc #
+######################
+npm-debug.log*
+yarn-error.log
+.babelcache
