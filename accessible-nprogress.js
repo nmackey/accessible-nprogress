@@ -1,4 +1,4 @@
-/* NProgress, (c) 2013, 2014 Rico Sta. Cruz - http://ricostacruz.com/nprogress
+/* Accessible NProgress, (c) 2018 Nicholas Mackey - https://github.com/nmackey/accessible-nprogress
  * @license MIT */
 
 ;(function(root, factory) {
@@ -14,7 +14,7 @@
 })(this, function() {
   var NProgress = {};
 
-  NProgress.version = '0.2.0';
+  NProgress.version = '0.3.0';
 
   var Settings = NProgress.settings = {
     minimum: 0.08,
@@ -24,10 +24,10 @@
     trickle: true,
     trickleSpeed: 200,
     showSpinner: true,
-    barSelector: '[role="bar"]',
-    spinnerSelector: '[role="spinner"]',
+    barSelector: 'div.bar',
+    spinnerSelector: 'div.spinner',
     parent: 'body',
-    template: '<div class="bar" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
+    template: '<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="1"><div class="peg"></div></div><div class="spinner" role="progressbar" aria-valuemin="0" aria-valuemax="1"><div class="spinner-icon"></div></div>'
   };
 
   /**
@@ -78,6 +78,7 @@
       if (Settings.positionUsing === '') Settings.positionUsing = NProgress.getPositioningCSS();
 
       // Add transition
+      bar.setAttribute('aria-valuenow', n);
       css(bar, barPositionCSS(n, speed, ease));
 
       if (n === 1) {
