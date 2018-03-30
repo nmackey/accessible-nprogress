@@ -10,8 +10,8 @@ Update code documentation
 Only support A+ spec promises
 Only support IE11+
 Use CHANGELOG.md
-Add Contributing.md
 Update README.md
+Add dist folder with unminified and minified builds
 
 ## [v0.3.0] - Mar 27, 2018
 
