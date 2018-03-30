@@ -46,7 +46,7 @@ plugins.push(new ExtractTextPlugin(outputCss));
 const config = {
   entry: path.resolve('src/index.js'),
   output: {
-    path: path.resolve('lib'),
+    path: path.resolve('dist'),
     filename: outputJs,
     library: 'NProgress',
     libraryTarget: 'umd',

@@ -10,7 +10,6 @@
 # Folders #
 ######################
 node_modules
-lib
 test-acceptance/screenshots
 coverage
 

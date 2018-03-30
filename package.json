@@ -2,8 +2,8 @@
   "name": "accessible-nprogress",
   "author": "Nicholas Mackey <nicholasmackey@gmail.com>",
   "description": "Simple slim accessible progress bars",
-  "main": "lib/accessible-nprogress.js",
-  "style": "lib/accessible-nprogress.css",
+  "main": "dist/accessible-nprogress.js",
+  "style": "dist/accessible-nprogress.css",
   "license": "MIT",
   "version": "1.0.0",
   "repository": "nmackey/accessible-nprogress",
@@ -14,16 +14,14 @@
     "test:unit": "jest --config config/jest.config.js",
     "test:acceptance": "testcafe chrome test-acceptance/tests/**/*test* -S -s test-acceptance/screenshots",
     "build": "NODE_ENV=development webpack --config config/webpack.config.js",
-    "build:min": "NODE_ENV=production webpack --config config/webpack.config.js",
-    "bump": "",
-    "publish": ""
+    "build:min": "NODE_ENV=production webpack --config config/webpack.config.js"
   },
   "dependencies": {},
   "devDependencies": {
     "axe-testcafe": "^1.1.0",
     "babel": "^6.23.0",
     "babel-core": "^6.26.0",
-    "babel-env": "^2.4.1",
+    "babel-preset-env": "^1.6.1",
     "babel-eslint": "^8.2.2",
     "babel-jest": "^22.4.3",
     "babel-loader": "^7.1.4",
@@ -39,5 +37,15 @@
     "style-loader": "^0.20.3",
     "testcafe": "^0.19.1",
     "webpack": "^3.10.0"
-  }
+  },
+  "keywords": [
+    "progress",
+    "progressbar",
+    "spinner",
+    "accessible",
+    "loading",
+    "xhr",
+    "ajax",
+    "promise"
+  ]
 }

@@ -3,31 +3,38 @@ Accessible NProgress
 
 [![Status](https://api.travis-ci.org/nmackey/accessible-nprogress.svg?branch=master)](http://travis-ci.org/nmackey/accessible-nprogress)
 [![npm version](https://img.shields.io/npm/v/accessible-nprogress.png)](https://npmjs.org/package/accessible-nprogress "View this project on npm")
-[![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/accessible-nprogress/badge?style=rounded)](https://www.jsdelivr.com/package/npm/accessible-nprogress)
+[![npm downloads](https://img.shields.io/npm/dm/accessible-nprogress.svg?style=flat-square)](http://npm-stat.com/charts.html?package=accessible-nprogress)
 
-Forked from https://github.com/rstacruz/nprogress
+[![Tested with Jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
+[![Tested with TestCafe](https://img.shields.io/badge/tested%20with-TestCafe-2fa4cf.svg)](https://github.com/DevExpress/testcafe)
 
-I have left most of the original README intact for usage purposes, but have not tested with most of the integrations listed below.
+![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png) | ![Edge](https://raw.github.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png) |
+--- | --- | --- | --- | --- | --- |
+Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | 11+ ✔ |
 
-> Minimalist progress bar
+> Minimalist progress bar (no dependencies)
 
 Slim progress bars for Ajax'y applications. Inspired by Google, YouTube, and Medium.
+
+Originally forked from https://github.com/rstacruz/nprogress
+
+1.0.0+ has be rewritten and only supports IE 11+ & A+ spec promises however the rest of the API is virtually the same.
+
+For a drop in replacement of the original nprogress with accessibility fixes and older browser support then use version [0.3.0](https://github.com/nmackey/accessible-nprogress/tree/v0.3.0)
 
 Installation
 ------------
 
-Add [accessible-nprogress.min.js] and [accessible-nprogress.min.css] to your project.
-
-```html
-<script src='lib/accessible-nprogress.min.js'></script>
-<link rel='stylesheet' href='lib/accessible-nprogress.min.css'/>
-```
-
-Accessible NProgress is available via [npm].
+Using [npm](https://www.npmjs.org/package/accessible-nprogress).
 
     $ npm install --save accessible-nprogress
 
-[npm]: https://www.npmjs.org/package/accessible-nprogress
+Using CDN:
+
+```html
+<script src="https://unpkg.com/accessible-nprogress/dist/accessible-nprogress.min.js"></script>
+<link rel='stylesheet' href='https://unpkg.com/accessible-nprogress/dist/accessible-nprogress.min.css'/>
+```
 
 Basic usage
 -----------
@@ -72,7 +79,50 @@ $(document).on('pjax:end',   function() { NProgress.done();  });
 Ideas
 -----
 
- * Add progress to your Ajax calls! Bind it to the jQuery(3+) `ajaxStart` and `ajaxStop` events.
+ * Add progress to your Ajax calls! Bind it to the jQuery or axios requests.
+
+#### jQuery
+
+~~~ js
+var requests = 0;
+$(document).ajaxStart(function() {
+  if (requests === 0) {
+    NProgress.start();
+  }
+  requests++;
+});
+$(document).ajaxStop(function() {
+  requests--;
+  if (requests === 0) {
+    NProgress.done();
+  }
+});
+~~~
+
+#### Axios
+
+~~~ js
+var requests = 0;
+axios.interceptors.request.use(function (config) {
+    if (requests === 0) {
+      NProgress.start();
+    }
+    requests++;
+    return config;
+  }, function (error) {
+    return Promise.reject(error);
+  });
+
+axios.interceptors.response.use(function (response) {
+    requests--;
+    if (requests === 0) {
+      NProgress.done();
+    }
+    return response;
+  }, function (error) {
+    return Promise.reject(error);
+  });
+~~~
 
  * Make a fancy loading bar even without Turbolinks/Pjax! Bind it to `$(document).ready` and `$(window).load`.
 
@@ -105,7 +155,16 @@ __Force-done:__ By passing `true` to `done()`, it will show the progress bar eve
 NProgress.done(true);
 ~~~
 
+__Promise:__ By passing A+ spec promises to `promise()`, it will automatically track progress for those promises as they complete.
+
+~~~ js
+NProgress.promise(new Promise((resolve) => setTimeout(resolve(), 1000)));
+NProgress.promise(new Promise((resolve) => setTimeout(resolve(), 500)));
+~~~
+
 __Get the status value:__ To get the status value, use `.status`
+
+__Get the settings value:__ To get the settings value, use `.settings`
 
 Configuration
 -------------
@@ -164,14 +223,9 @@ NProgress.configure({ parent: '#container' });
 Customization
 -------------
 
-Just edit `accessible-nprogress.css` to your liking. Tip: you probably only want to find and replace occurrences of `#29d`.
+Just edit `dist/accessible-nprogress.css` to your liking. Tip: you probably only want to find and replace occurrences of `#29d`.
 
 The included CSS file is pretty minimal... in fact, feel free to scrap it and make your own!
-
-Resources
----------
-
- * [New UI Pattern: Website Loading Bars](http://www.usabilitypost.com/2013/08/19/new-ui-pattern-website-loading-bars/) (usabilitypost.com)
 
 Thanks
 -------
@@ -181,8 +235,8 @@ __Bugs and requests__: submit them through the project's issues tracker.<br>
 
 [default template]: https://github.com/nmackey/nprogress/blob/master/src/index.js#L14
 [Turbolinks]: https://github.com/rails/turbolinks
-[accessible-nprogress.min.js]: https://github.com/nmackey/accessible-nprogress/blob/master/lib/accessible-nprogress.min.js
-[accessible-nprogress.min.css]: https://github.com/nmackey/accessible-nprogress/blob/master/lib/accessible-nprogress.min.css
+[accessible-nprogress.min.js]: https://github.com/nmackey/accessible-nprogress/blob/master/dist/accessible-nprogress.min.js
+[accessible-nprogress.min.css]: https://github.com/nmackey/accessible-nprogress/blob/master/dist/accessible-nprogress.min.css
 
 Thanks
 ------
