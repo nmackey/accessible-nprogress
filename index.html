@@ -3,10 +3,10 @@
 <head>
   <meta charset='utf-8'>
   <title>Accessible NProgress: slim progress bars in JavaScript</title>
-  <link href='support/style.css?t=4' rel='stylesheet' />
-  <link href='accessible-nprogress.css?t=4' rel='stylesheet' />
+  <link href='style.css' rel='stylesheet' />
+  <link rel='stylesheet' href='https://unpkg.com/accessible-nprogress/dist/accessible-nprogress.min.css'/>
   <meta name='viewport' content='width=device-width'>
-  <script src='accessible-nprogress.js?t=4'></script>
+  <script src="https://unpkg.com/accessible-nprogress/dist/accessible-nprogress.min.js"></script>
 </head>
 
 <body style='display: none'>
@@ -45,9 +45,17 @@
         &mdash;
         completes the progress
       </p>
+      <p>
+        <button class='button play' id='b-promise'></button>
+        <i>NProgress</i><b>.promise(promise)</b>
+        &mdash;
+        Progress completes when promise(s) is resolved - additive (try clicking the button multiple times)
+        <br>
+        Demo uses promises that are resolved randomly between 0 and 3 seconds (doesn't work in IE 11 without a polyfill)
+      </p>
     </div>
     <div class='actions'>
-      <p class='brief'>Perfect for Turbolinks, Pjax, and other Ajax-heavy apps.</p>
+      <p class='brief'>Perfect for jQuery, Axios, Turbolinks, Pjax, and other Ajax-heavy apps.</p>
       <a href='https://github.com/nmackey/accessible-nprogress' class='button primary big'>
         Download
       </a>
@@ -74,10 +82,19 @@
       })
     }, 600)
 
+    function promiseTimeout() {
+      return new Promise(function(resolve) {
+        setTimeout(function () {
+          resolve();
+        }, Math.random() * 1000 * 3);
+      });
+    }
+
     on(id('b-0'), 'click', function () { NProgress.start() })
     on(id('b-40'), 'click', function () { NProgress.set(0.4) })
     on(id('b-inc'), 'click', function () { NProgress.inc() })
     on(id('b-100'), 'click', function () { NProgress.done() })
+    on(id('b-promise'), 'click', function () { NProgress.promise(promiseTimeout()) })
 
     function id (val) {
       return document.getElementById(val)
