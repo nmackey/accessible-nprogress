@@ -12,7 +12,7 @@
     "lint": "eslint --ext .js --quiet src",
     "test": "yarn test:unit --coverage && yarn build && yarn build:min && yarn test:acceptance",
     "test:unit": "jest --config config/jest.config.js",
-    "test:acceptance": "testcafe chrome test-acceptance/tests/**/*test* -S -s test-acceptance/screenshots",
+    "test:acceptance": "testcafe chrome:headless test-acceptance/tests/**/*test* -S -s test-acceptance/screenshots",
     "build": "NODE_ENV=development webpack --config config/webpack.config.js",
     "build:min": "NODE_ENV=production webpack --config config/webpack.config.js"
   },
