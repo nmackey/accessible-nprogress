@@ -1,7 +1,5 @@
-## [v1.0.0] - March 24, 2018
+## [v1.0.0] - March 30, 2018
 
-Forked from https://github.com/rstacruz/nprogress
-Fix accessibility issues
 Change to use webpack & babel
 Add eslint and update based on airbnb styleguide
 Use yarn
@@ -11,3 +9,20 @@ General cleanup
 Update code documentation
 Only support A+ spec promises
 Only support IE11+
+Use CHANGELOG.md
+Add Contributing.md
+Update README.md
+
+## [v0.3.0] - Mar 27, 2018
+
+This is a feature release for fixing accessibility issues and creating a new npm package
+
+ * Fork from https://github.com/rstacruz/nprogress
+ * Fix accessibility issues
+ * Update readme for new repo
+ * Rename files
+ * Remove bower support
+ * new npm package
+
+[v0.3.0]: https://github.com/nmackey/accessible-nprogress/compare/v0.2.0...v0.3.0
+[v1.0.0]: https://github.com/nmackey/accessible-nprogress/compare/v0.3.0...v1.0.0
