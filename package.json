@@ -2,44 +2,50 @@
   "name": "accessible-nprogress",
   "author": "Nicholas Mackey <nicholasmackey@gmail.com>",
   "description": "Simple slim accessible progress bars",
-  "main": "accessible-nprogress.js",
-  "style": "accessible-nprogress.css",
+  "main": "dist/accessible-nprogress.js",
+  "style": "dist/accessible-nprogress.css",
   "license": "MIT",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "repository": "nmackey/accessible-nprogress",
   "scripts": {
-    "test": "mocha"
-  },
-  "devDependencies": {
-    "chai": "~1.6.1",
-    "jquery": "^2.1.1",
-    "jsdom": "^5.4.3",
-    "mocha": "^2.2.4",
-    "mocha-jsdom": "^0.3.0"
+    "pretest": "yarn lint",
+    "lint": "eslint --ext .js --quiet src",
+    "test": "yarn test:unit --coverage && yarn build && yarn build:min && yarn test:acceptance",
+    "test:unit": "jest --config config/jest.config.js",
+    "test:acceptance": "testcafe chrome:headless test-acceptance/tests/**/*test* -S -s test-acceptance/screenshots",
+    "build": "NODE_ENV=development webpack --config config/webpack.config.js",
+    "build:min": "NODE_ENV=production webpack --config config/webpack.config.js"
   },
   "dependencies": {},
-  "jspm": {
-    "format": "global",
-    "shim": {
-      "accessible-nprogress": {
-        "deps": [
-          "./accessible-nprogress.css!"
-        ]
-      }
-    },
-    "dependencies": {
-      "css": "*"
-    }
+  "devDependencies": {
+    "axe-testcafe": "^1.1.0",
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-eslint": "^8.2.2",
+    "babel-jest": "^22.4.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-testcafe": "^0.2.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "jest": "^22.4.3",
+    "semver": "~5.5.0",
+    "style-loader": "^0.20.3",
+    "testcafe": "^0.19.1",
+    "webpack": "^3.10.0"
   },
-  "spm": {
-    "main": "accessible-nprogress.js",
-    "output": [
-      "accessible-nprogress.css"
-    ],
-    "ignore": [
-      "support",
-      "test",
-      "vendor"
-    ]
-  }
+  "keywords": [
+    "progress",
+    "progressbar",
+    "spinner",
+    "accessible",
+    "loading",
+    "xhr",
+    "ajax",
+    "promise"
+  ]
 }
