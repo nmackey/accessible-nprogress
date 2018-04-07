@@ -1,6 +1,6 @@
 /*!
  * 
- *   Fri Mar 30 2018 10:30:21 GMT-0500 (CDT)
+ *   Sun Apr 01 2018 12:47:50 GMT-0500 (CDT)
  *   Accessible NProgress, (c) 2018 Nicholas Mackey - http://nmackey.com/accessible-nprogress
  *   @license MIT
  * 
@@ -110,7 +110,7 @@ var NProgress = function NProgress() {
   var initialPromises = 0;
   var currentPromises = 0;
 
-  var self = {
+  return {
     /**
      * Updates configuration.
      *
@@ -130,10 +130,12 @@ var NProgress = function NProgress() {
      * @return {object} The NProgress object.
      */
     set: function set(value) {
+      var _this = this;
+
       var clamppedValue = (0, _util.clamp)(value, localSettings.minimum, 1);
       localStatus = clamppedValue === 1 ? null : clamppedValue;
 
-      var progress = self.render();
+      var progress = this.render();
 
       // Repaint
       progress.offsetWidth; // eslint-disable-line no-unused-expressions
@@ -160,7 +162,7 @@ var NProgress = function NProgress() {
             progress.style.transition = 'all ' + speed + 'ms linear';
             progress.style.opacity = 0;
             setTimeout(function () {
-              self.remove();
+              _this.remove();
               next();
             }, speed);
           }, speed);
@@ -180,19 +182,21 @@ var NProgress = function NProgress() {
      * @return {object} The NProgress object.
      */
     start: function start() {
+      var _this2 = this;
+
       if (!localStatus) {
-        self.set(0);
+        this.set(0);
       }
 
-      function work() {
+      var work = function work() {
         setTimeout(function () {
           if (!localStatus) {
             return;
           }
-          self.inc();
+          _this2.inc();
           work();
         }, localSettings.trickleSpeed);
-      }
+      };
 
       if (localSettings.trickle) {
         work();
@@ -224,7 +228,7 @@ var NProgress = function NProgress() {
       }
 
       var halfRandom = 0.5 * Math.random();
-      return self.inc(0.3 + halfRandom).set(1);
+      return this.inc(0.3 + halfRandom).set(1);
     },
 
 
@@ -238,11 +242,11 @@ var NProgress = function NProgress() {
       var amount = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : (0, _util.randomInc)(localStatus);
 
       if (!localStatus) {
-        return self.start();
+        return this.start();
       }
 
       var clamppedStatus = (0, _util.clamp)(localStatus + amount, 0, 0.994);
-      return self.set(clamppedStatus);
+      return this.set(clamppedStatus);
     },
 
 
@@ -252,7 +256,7 @@ var NProgress = function NProgress() {
      * @return {HTMLElement} The element rendered.
      */
     render: function render() {
-      if (self.isRendered()) {
+      if (this.isRendered()) {
         return document.getElementById('nprogress');
       }
 
@@ -262,7 +266,7 @@ var NProgress = function NProgress() {
       progress.id = 'nprogress';
       progress.innerHTML = localSettings.template;
 
-      var perc = self.isStarted() ? '-100' : (0, _util.toBarPerc)(localStatus || 0);
+      var perc = this.isStarted() ? '-100' : (0, _util.toBarPerc)(localStatus || 0);
       var bar = progress.querySelector(localSettings.barSelector);
       bar.style.transform = 'translate3d(' + perc + '%,0,0)';
       bar.style.transition = 'all 0 linear';
@@ -311,22 +315,24 @@ var NProgress = function NProgress() {
      * @param $promise Promise
      */
     promise: function promise($promise) {
+      var _this3 = this;
+
       if (currentPromises === 0) {
-        self.start();
+        this.start();
       }
 
       initialPromises += 1;
       currentPromises += 1;
 
-      function promiseResolution() {
+      var promiseResolution = function promiseResolution() {
         currentPromises -= 1;
         if (currentPromises === 0) {
           initialPromises = 0;
-          self.done();
+          _this3.done();
         } else {
-          self.set((initialPromises - currentPromises) / initialPromises);
+          _this3.set((initialPromises - currentPromises) / initialPromises);
         }
-      }
+      };
 
       $promise.then(promiseResolution).catch(promiseResolution);
 
@@ -342,8 +348,6 @@ var NProgress = function NProgress() {
       return localSettings;
     }
   };
-
-  return self;
 };
 
 // export using 'module.exports' so the object on the window doesn't have 'default'

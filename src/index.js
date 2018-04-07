@@ -27,7 +27,7 @@ const NProgress = () => {
   let initialPromises = 0;
   let currentPromises = 0;
 
-  const self = {
+  return {
     /**
      * Updates configuration.
      *
@@ -49,7 +49,7 @@ const NProgress = () => {
       const clamppedValue = clamp(value, localSettings.minimum, 1);
       localStatus = (clamppedValue === 1 ? null : clamppedValue);
 
-      const progress = self.render();
+      const progress = this.render();
 
       // Repaint
       progress.offsetWidth; // eslint-disable-line no-unused-expressions
@@ -74,7 +74,7 @@ const NProgress = () => {
             progress.style.transition = `all ${speed}ms linear`;
             progress.style.opacity = 0;
             setTimeout(() => {
-              self.remove();
+              this.remove();
               next();
             }, speed);
           }, speed);
@@ -94,18 +94,18 @@ const NProgress = () => {
      */
     start() {
       if (!localStatus) {
-        self.set(0);
+        this.set(0);
       }
 
-      function work() {
+      const work = () => {
         setTimeout(() => {
           if (!localStatus) {
             return;
           }
-          self.inc();
+          this.inc();
           work();
         }, localSettings.trickleSpeed);
-      }
+      };
 
       if (localSettings.trickle) {
         work();
@@ -135,7 +135,7 @@ const NProgress = () => {
       }
 
       const halfRandom = 0.5 * Math.random();
-      return self.inc(0.3 + halfRandom).set(1);
+      return this.inc(0.3 + halfRandom).set(1);
     },
 
     /**
@@ -146,11 +146,11 @@ const NProgress = () => {
      */
     inc(amount = randomInc(localStatus)) {
       if (!localStatus) {
-        return self.start();
+        return this.start();
       }
 
       const clamppedStatus = clamp(localStatus + amount, 0, 0.994);
-      return self.set(clamppedStatus);
+      return this.set(clamppedStatus);
     },
 
     /**
@@ -159,7 +159,7 @@ const NProgress = () => {
      * @return {HTMLElement} The element rendered.
      */
     render() {
-      if (self.isRendered()) {
+      if (this.isRendered()) {
         return document.getElementById('nprogress');
       }
 
@@ -169,7 +169,7 @@ const NProgress = () => {
       progress.id = 'nprogress';
       progress.innerHTML = localSettings.template;
 
-      const perc = self.isStarted() ? '-100' : toBarPerc(localStatus || 0);
+      const perc = this.isStarted() ? '-100' : toBarPerc(localStatus || 0);
       const bar = progress.querySelector(localSettings.barSelector);
       bar.style.transform = `translate3d(${perc}%,0,0)`;
       bar.style.transition = 'all 0 linear';
@@ -216,21 +216,21 @@ const NProgress = () => {
      */
     promise($promise) {
       if (currentPromises === 0) {
-        self.start();
+        this.start();
       }
 
       initialPromises += 1;
       currentPromises += 1;
 
-      function promiseResolution() {
+      const promiseResolution = () => {
         currentPromises -= 1;
         if (currentPromises === 0) {
           initialPromises = 0;
-          self.done();
+          this.done();
         } else {
-          self.set((initialPromises - currentPromises) / initialPromises);
+          this.set((initialPromises - currentPromises) / initialPromises);
         }
-      }
+      };
 
       $promise
         .then(promiseResolution)
@@ -247,8 +247,6 @@ const NProgress = () => {
       return localSettings;
     },
   };
-
-  return self;
 };
 
 // export using 'module.exports' so the object on the window doesn't have 'default'
