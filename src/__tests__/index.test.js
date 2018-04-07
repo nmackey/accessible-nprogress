@@ -174,28 +174,6 @@ describe('Accessible NProgress', () => {
     });
   });
 
-  describe('isStarted', () => {
-    it('should return true if the status is a number', () => {
-      NProgress.start();
-      expect(NProgress.isStarted()).toEqual(true);
-    });
-
-    it('should return false if the status is null', () => {
-      expect(NProgress.isStarted()).toEqual(false);
-    });
-  });
-
-  describe('isRendered', () => {
-    it('should return true if NProgress is rendered', () => {
-      NProgress.start();
-      expect(NProgress.isRendered()).toEqual(true);
-    });
-
-    it('should return false if NProgress is not rendered', () => {
-      expect(NProgress.isRendered()).toEqual(false);
-    });
-  });
-
   describe('promise', () => {
     it('should set status for promises added', () => {
       NProgress.promise(Promise.resolve());

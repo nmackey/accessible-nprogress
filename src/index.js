@@ -27,6 +27,57 @@ const NProgress = () => {
   let initialPromises = 0;
   let currentPromises = 0;
 
+  /**
+   * @return {boolean} If the progress bar is rendered.
+   */
+  function isRendered() {
+    return !!document.getElementById('nprogress');
+  }
+
+  /**
+   * @return {boolean} If there is curent progress.
+   */
+  function isStarted() {
+    return typeof localStatus === 'number';
+  }
+
+  /**
+   * Renders the progress bar markup based on the `template` setting.
+   *
+   * @return {HTMLElement} The element rendered.
+   */
+  function render() {
+    if (isRendered()) {
+      return document.getElementById('nprogress');
+    }
+
+    document.documentElement.classList.add('nprogress-busy');
+
+    const progress = document.createElement('div');
+    progress.id = 'nprogress';
+    progress.innerHTML = localSettings.template;
+
+    const perc = isStarted() ? '-100' : toBarPerc(localStatus || 0);
+    const bar = progress.querySelector(localSettings.barSelector);
+    bar.style.transform = `translate3d(${perc}%,0,0)`;
+    bar.style.transition = 'all 0 linear';
+
+    if (!localSettings.showSpinner) {
+      const spinner = progress.querySelector(localSettings.spinnerSelector);
+      if (spinner) {
+        removeElement(spinner);
+      }
+    }
+
+    const parent = document.querySelector(localSettings.parent);
+    if (parent !== document.body) {
+      parent.classList.add('nprogress-custom-parent');
+    }
+
+    parent.appendChild(progress);
+    return progress;
+  }
+
   return {
     /**
      * Updates configuration.
@@ -49,7 +100,7 @@ const NProgress = () => {
       const clamppedValue = clamp(value, localSettings.minimum, 1);
       localStatus = (clamppedValue === 1 ? null : clamppedValue);
 
-      const progress = this.render();
+      const progress = render();
 
       // Repaint
       progress.offsetWidth; // eslint-disable-line no-unused-expressions
@@ -115,13 +166,6 @@ const NProgress = () => {
     },
 
     /**
-     * @return {boolean} If there is curent progress.
-     */
-    isStarted() {
-      return typeof localStatus === 'number';
-    },
-
-    /**
      * Hides the progress bar.
      * This is the *sort of* the same as setting the status to 100%, with the
      * difference being `done()` makes some placebo effect of some realistic motion.
@@ -154,43 +198,6 @@ const NProgress = () => {
     },
 
     /**
-     * Renders the progress bar markup based on the `template` setting.
-     *
-     * @return {HTMLElement} The element rendered.
-     */
-    render() {
-      if (this.isRendered()) {
-        return document.getElementById('nprogress');
-      }
-
-      document.documentElement.classList.add('nprogress-busy');
-
-      const progress = document.createElement('div');
-      progress.id = 'nprogress';
-      progress.innerHTML = localSettings.template;
-
-      const perc = this.isStarted() ? '-100' : toBarPerc(localStatus || 0);
-      const bar = progress.querySelector(localSettings.barSelector);
-      bar.style.transform = `translate3d(${perc}%,0,0)`;
-      bar.style.transition = 'all 0 linear';
-
-      if (!localSettings.showSpinner) {
-        const spinner = progress.querySelector(localSettings.spinnerSelector);
-        if (spinner) {
-          removeElement(spinner);
-        }
-      }
-
-      const parent = document.querySelector(localSettings.parent);
-      if (parent !== document.body) {
-        parent.classList.add('nprogress-custom-parent');
-      }
-
-      parent.appendChild(progress);
-      return progress;
-    },
-
-    /**
      * Removes the element. Opposite of render().
      */
     remove() {
@@ -203,16 +210,10 @@ const NProgress = () => {
     },
 
     /**
-     * @return {boolean} If the progress bar is rendered.
-     */
-    isRendered() {
-      return !!document.getElementById('nprogress');
-    },
-
-    /**
      * Waits for all supplied promises and increases the progress as the promises resolve.
      *
      * @param $promise Promise
+     * @return {object} The NProgress object.
      */
     promise($promise) {
       if (currentPromises === 0) {

@@ -18,7 +18,7 @@ Slim accessible progress bars for Ajax'y applications. Inspired by Google, YouTu
 
 Originally forked from https://github.com/rstacruz/nprogress
 
-1.0.0+ has be rewritten and only supports IE 11+ & A+ spec promises but the API is the same.
+1.0.0+ has be rewritten and only supports IE 11+ & A+ spec promises but the API is essentially the same.
 
 For a drop in replacement of the original nprogress with accessibility fixes and older browser support then use version [0.3.0](https://github.com/nmackey/accessible-nprogress/tree/v0.3.0)
 

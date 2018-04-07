@@ -1,6 +1,6 @@
 /*!
  * 
- *   Sun Apr 01 2018 12:47:50 GMT-0500 (CDT)
+ *   Sat Apr 07 2018 14:13:22 GMT-0500 (CDT)
  *   Accessible NProgress, (c) 2018 Nicholas Mackey - http://nmackey.com/accessible-nprogress
  *   @license MIT
  * 
@@ -110,6 +110,57 @@ var NProgress = function NProgress() {
   var initialPromises = 0;
   var currentPromises = 0;
 
+  /**
+   * @return {boolean} If the progress bar is rendered.
+   */
+  function isRendered() {
+    return !!document.getElementById('nprogress');
+  }
+
+  /**
+   * @return {boolean} If there is curent progress.
+   */
+  function isStarted() {
+    return typeof localStatus === 'number';
+  }
+
+  /**
+   * Renders the progress bar markup based on the `template` setting.
+   *
+   * @return {HTMLElement} The element rendered.
+   */
+  function render() {
+    if (isRendered()) {
+      return document.getElementById('nprogress');
+    }
+
+    document.documentElement.classList.add('nprogress-busy');
+
+    var progress = document.createElement('div');
+    progress.id = 'nprogress';
+    progress.innerHTML = localSettings.template;
+
+    var perc = isStarted() ? '-100' : (0, _util.toBarPerc)(localStatus || 0);
+    var bar = progress.querySelector(localSettings.barSelector);
+    bar.style.transform = 'translate3d(' + perc + '%,0,0)';
+    bar.style.transition = 'all 0 linear';
+
+    if (!localSettings.showSpinner) {
+      var spinner = progress.querySelector(localSettings.spinnerSelector);
+      if (spinner) {
+        (0, _util.removeElement)(spinner);
+      }
+    }
+
+    var parent = document.querySelector(localSettings.parent);
+    if (parent !== document.body) {
+      parent.classList.add('nprogress-custom-parent');
+    }
+
+    parent.appendChild(progress);
+    return progress;
+  }
+
   return {
     /**
      * Updates configuration.
@@ -135,7 +186,7 @@ var NProgress = function NProgress() {
       var clamppedValue = (0, _util.clamp)(value, localSettings.minimum, 1);
       localStatus = clamppedValue === 1 ? null : clamppedValue;
 
-      var progress = this.render();
+      var progress = render();
 
       // Repaint
       progress.offsetWidth; // eslint-disable-line no-unused-expressions
@@ -207,14 +258,6 @@ var NProgress = function NProgress() {
 
 
     /**
-     * @return {boolean} If there is curent progress.
-     */
-    isStarted: function isStarted() {
-      return typeof localStatus === 'number';
-    },
-
-
-    /**
      * Hides the progress bar.
      * This is the *sort of* the same as setting the status to 100%, with the
      * difference being `done()` makes some placebo effect of some realistic motion.
@@ -251,44 +294,6 @@ var NProgress = function NProgress() {
 
 
     /**
-     * Renders the progress bar markup based on the `template` setting.
-     *
-     * @return {HTMLElement} The element rendered.
-     */
-    render: function render() {
-      if (this.isRendered()) {
-        return document.getElementById('nprogress');
-      }
-
-      document.documentElement.classList.add('nprogress-busy');
-
-      var progress = document.createElement('div');
-      progress.id = 'nprogress';
-      progress.innerHTML = localSettings.template;
-
-      var perc = this.isStarted() ? '-100' : (0, _util.toBarPerc)(localStatus || 0);
-      var bar = progress.querySelector(localSettings.barSelector);
-      bar.style.transform = 'translate3d(' + perc + '%,0,0)';
-      bar.style.transition = 'all 0 linear';
-
-      if (!localSettings.showSpinner) {
-        var spinner = progress.querySelector(localSettings.spinnerSelector);
-        if (spinner) {
-          (0, _util.removeElement)(spinner);
-        }
-      }
-
-      var parent = document.querySelector(localSettings.parent);
-      if (parent !== document.body) {
-        parent.classList.add('nprogress-custom-parent');
-      }
-
-      parent.appendChild(progress);
-      return progress;
-    },
-
-
-    /**
      * Removes the element. Opposite of render().
      */
     remove: function remove() {
@@ -302,17 +307,10 @@ var NProgress = function NProgress() {
 
 
     /**
-     * @return {boolean} If the progress bar is rendered.
-     */
-    isRendered: function isRendered() {
-      return !!document.getElementById('nprogress');
-    },
-
-
-    /**
      * Waits for all supplied promises and increases the progress as the promises resolve.
      *
      * @param $promise Promise
+     * @return {object} The NProgress object.
      */
     promise: function promise($promise) {
       var _this3 = this;

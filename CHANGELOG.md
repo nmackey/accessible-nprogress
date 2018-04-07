@@ -1,3 +1,13 @@
+## [v2.0.0] - April 7, 2018
+
+New features:
+
+Added typescript support
+
+Breaking changes:
+
+Remove render, isStarted, and isRendered from API (they weren't documented and shouldn't be used)
+
 ## [v1.0.0] - March 30, 2018
 
 Change to use webpack & babel
@@ -26,3 +36,4 @@ This is a feature release for fixing accessibility issues and creating a new npm
 
 [v0.3.0]: https://github.com/nmackey/accessible-nprogress/compare/v0.2.0...v0.3.0
 [v1.0.0]: https://github.com/nmackey/accessible-nprogress/compare/v0.3.0...v1.0.0
+[v2.0.0]: https://github.com/nmackey/accessible-nprogress/compare/v1.0.0...v2.0.0
