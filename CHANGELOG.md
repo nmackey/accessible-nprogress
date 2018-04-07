@@ -1,10 +1,10 @@
 ## [v2.0.0] - April 7, 2018
 
-New features:
+## New features:
 
 Added typescript support
 
-Breaking changes:
+## Breaking changes:
 
 Remove render, isStarted, and isRendered from API (they weren't documented and shouldn't be used)
 
