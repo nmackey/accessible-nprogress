@@ -12,13 +12,13 @@ Accessible NProgress
 --- | --- | --- | --- | --- | --- |
 Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | 11+ ✔ |
 
-> Minimalist progress bar (no dependencies)
+> Minimalist accessible progress bar (no dependencies)
 
-Slim progress bars for Ajax'y applications. Inspired by Google, YouTube, and Medium.
+Slim accessible progress bars for Ajax'y applications. Inspired by Google, YouTube, and Medium.
 
 Originally forked from https://github.com/rstacruz/nprogress
 
-1.0.0+ has be rewritten and only supports IE 11+ & A+ spec promises however the rest of the API is virtually the same.
+1.0.0+ has be rewritten and only supports IE 11+ & A+ spec promises but the API is the same.
 
 For a drop in replacement of the original nprogress with accessibility fixes and older browser support then use version [0.3.0](https://github.com/nmackey/accessible-nprogress/tree/v0.3.0)
 
