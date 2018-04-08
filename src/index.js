@@ -250,5 +250,4 @@ const NProgress = () => {
   };
 };
 
-// export using 'module.exports' so the object on the window doesn't have 'default'
-module.exports = NProgress();
+export default NProgress();

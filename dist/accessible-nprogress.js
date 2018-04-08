@@ -1,6 +1,6 @@
 /*!
  * 
- *   Sat Apr 07 2018 14:13:22 GMT-0500 (CDT)
+ *   Sun Apr 08 2018 13:35:07 GMT-0500 (CDT)
  *   Accessible NProgress, (c) 2018 Nicholas Mackey - http://nmackey.com/accessible-nprogress
  *   @license MIT
  * 
@@ -86,6 +86,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 var _util = __webpack_require__(1);
 
@@ -348,8 +352,7 @@ var NProgress = function NProgress() {
   };
 };
 
-// export using 'module.exports' so the object on the window doesn't have 'default'
-module.exports = NProgress();
+exports.default = NProgress();
 
 /***/ }),
 /* 1 */
@@ -471,5 +474,5 @@ var queue = exports.queue = function () {
 // removed by extract-text-webpack-plugin
 
 /***/ })
-/******/ ]);
+/******/ ])["default"];
 });

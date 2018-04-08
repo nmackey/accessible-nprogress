@@ -49,6 +49,7 @@ const config = {
     path: path.resolve('dist'),
     filename: outputJs,
     library: 'NProgress',
+    libraryExport: 'default',
     libraryTarget: 'umd',
     umdNamedDefine: true,
   },
