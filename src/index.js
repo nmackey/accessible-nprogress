@@ -70,11 +70,13 @@ const NProgress = () => {
     }
 
     const parent = document.querySelector(localSettings.parent);
-    if (parent !== document.body) {
-      parent.classList.add('nprogress-custom-parent');
-    }
+    if (parent) {
+      if (parent !== document.body) {
+        parent.classList.add('nprogress-custom-parent');
+      }
 
-    parent.appendChild(progress);
+      parent.appendChild(progress);
+    }
     return progress;
   }
 

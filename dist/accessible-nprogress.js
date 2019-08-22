@@ -1,6 +1,6 @@
 /*!
  * 
- *   Sun Apr 08 2018 13:35:07 GMT-0500 (CDT)
+ *   Thu Aug 22 2019 11:42:01 GMT-0500 (CDT)
  *   Accessible NProgress, (c) 2018 Nicholas Mackey - http://nmackey.com/accessible-nprogress
  *   @license MIT
  * 
@@ -157,11 +157,13 @@ var NProgress = function NProgress() {
     }
 
     var parent = document.querySelector(localSettings.parent);
-    if (parent !== document.body) {
-      parent.classList.add('nprogress-custom-parent');
-    }
+    if (parent) {
+      if (parent !== document.body) {
+        parent.classList.add('nprogress-custom-parent');
+      }
 
-    parent.appendChild(progress);
+      parent.appendChild(progress);
+    }
     return progress;
   }
 
