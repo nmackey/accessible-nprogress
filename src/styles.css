@@ -1,10 +1,6 @@
 /* Make clicks pass-through */
 #nprogress {
   pointer-events: none;
-
-  /* Ensures progress container does not interfere with layout */
-  position: absolute;
-  width: 100%;
 }
 
 #nprogress .bar {
