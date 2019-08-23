@@ -81,10 +81,23 @@ describe('Accessible NProgress', () => {
       expect(NProgress.status).toEqual(defaults.minimum);
     });
 
-    it('should be attached to specified parent', () => {
+    it('should be attached to specified parent when parent is already in the DOM', () => {
       document.body.innerHTML = '<div id="test"></div>';
       NProgress.configure({ parent: '#test' });
       NProgress.start();
+      expect(document.getElementById('nprogress').parentElement).toEqual(document.getElementById('test'));
+      expect(document.getElementById('test').classList[0]).toEqual('nprogress-custom-parent');
+    });
+
+    it('should be attached to specified parent when parent is delayed being rendered to the DOM', () => {
+      NProgress.configure({ parent: '#test' });
+      NProgress.start();
+      document.body.innerHTML = '<div id="test"></div>';
+
+      expect(document.getElementById('nprogress')).toBeNull();
+
+      jest.advanceTimersByTime(1000);
+
       expect(document.getElementById('nprogress').parentElement).toEqual(document.getElementById('test'));
       expect(document.getElementById('test').classList[0]).toEqual('nprogress-custom-parent');
     });
