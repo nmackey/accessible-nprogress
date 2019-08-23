@@ -6,7 +6,7 @@ const libraryName = 'accessible-nprogress';
 
 const BANNER = `
   ${(new Date()).toString()}
-  Accessible NProgress, (c) 2018 Nicholas Mackey - http://nmackey.com/accessible-nprogress
+  Accessible NProgress, (c) 2019 Nicholas Mackey - http://nmackey.com/accessible-nprogress
   @license MIT
 `;
 

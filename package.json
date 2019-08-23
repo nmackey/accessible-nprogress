@@ -6,7 +6,7 @@
   "style": "dist/accessible-nprogress.css",
   "types": "typings/index.d.ts",
   "license": "MIT",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "repository": "nmackey/accessible-nprogress",
   "scripts": {
     "pretest": "yarn lint",

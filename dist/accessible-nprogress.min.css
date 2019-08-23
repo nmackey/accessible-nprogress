@@ -1,7 +1,7 @@
 /*!
  * 
- *   Thu Aug 22 2019 13:56:52 GMT-0500 (Central Daylight Time)
- *   Accessible NProgress, (c) 2018 Nicholas Mackey - http://nmackey.com/accessible-nprogress
+ *   Thu Aug 22 2019 21:41:43 GMT-0500 (CDT)
+ *   Accessible NProgress, (c) 2019 Nicholas Mackey - http://nmackey.com/accessible-nprogress
  *   @license MIT
  * 
  */

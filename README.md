@@ -241,7 +241,7 @@ __Bugs and requests__: submit them through the project's issues tracker.<br>
 Thanks
 ------
 
-**Acessible NProgress** © 2018, Nicholas Mackey. Released under the [MIT License].<br>
+**Acessible NProgress** © 2019, Nicholas Mackey. Released under the [MIT License].<br>
 Authored and maintained by Nicholas Mackey with help from [contributors].
 
 [MIT License]: https://mit-license.org/
