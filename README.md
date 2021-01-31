@@ -1,7 +1,7 @@
 Accessible NProgress
 =========
 
-[![Status](https://api.travis-ci.org/nmackey/accessible-nprogress.svg?branch=master)](http://travis-ci.org/nmackey/accessible-nprogress)
+[![Build Status](https://travis-ci.com/nmackey/accessible-nprogress.svg?branch=master)](https://travis-ci.com/nmackey/accessible-nprogress)
 [![npm version](https://img.shields.io/npm/v/accessible-nprogress.png)](https://npmjs.org/package/accessible-nprogress "View this project on npm")
 [![npm downloads](https://img.shields.io/npm/dm/accessible-nprogress.svg?style=flat-square)](http://npm-stat.com/charts.html?package=accessible-nprogress)
 
