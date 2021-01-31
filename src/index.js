@@ -1,4 +1,6 @@
-import { assign, clamp, toBarPerc, queue, removeElement, randomInc } from './util';
+import {
+  assign, clamp, toBarPerc, queue, removeElement, randomInc,
+} from './util';
 import './styles.css';
 
 const DEFAULTS = {
@@ -9,7 +11,9 @@ const DEFAULTS = {
   trickleSpeed: 200,
   showSpinner: true,
   barSelector: 'div.bar',
+  barLabel: 'processing request',
   spinnerSelector: 'div.spinner',
+  spinnerLabel: 'processing request',
   parent: 'body',
   template: `
     <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="1">
@@ -59,13 +63,16 @@ const NProgress = () => {
 
     const perc = isStarted() ? '-100' : toBarPerc(localStatus || 0);
     const bar = progress.querySelector(localSettings.barSelector);
+    bar.setAttribute('aria-label', localSettings.barLabel);
     bar.style.transform = `translate3d(${perc}%,0,0)`;
     bar.style.transition = 'all 0 linear';
 
-    if (!localSettings.showSpinner) {
-      const spinner = progress.querySelector(localSettings.spinnerSelector);
-      if (spinner) {
+    const spinner = progress.querySelector(localSettings.spinnerSelector);
+    if (spinner) {
+      if (!localSettings.showSpinner) {
         removeElement(spinner);
+      } else {
+        spinner.setAttribute('aria-label', localSettings.spinnerLabel);
       }
     }
 

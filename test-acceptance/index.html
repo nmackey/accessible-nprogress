@@ -9,8 +9,12 @@
   </head>
 
   <body>
-    <main id="main"></main>
+    <main id="main">
+      <h1>NProgress</h1>
+      <div id="progress"></div>
+    </main>
     <script>
+      NProgress.configure({ parent: '#progress' });
       NProgress.start();
     </script>
   </body>

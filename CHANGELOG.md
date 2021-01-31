@@ -1,3 +1,7 @@
+## [v2.1.0] - January 31, 2021
+
+fix: add aria-label options with default and update dependencies & build
+
 ## [v2.0.1] - August 22, 2019
 
 fix: allow dynamically loaded parent container
@@ -42,3 +46,4 @@ This is a feature release for fixing accessibility issues and creating a new npm
 [v1.0.0]: https://github.com/nmackey/accessible-nprogress/compare/v0.3.0...v1.0.0
 [v2.0.0]: https://github.com/nmackey/accessible-nprogress/compare/v1.0.0...v2.0.0
 [v2.0.1]: https://github.com/nmackey/accessible-nprogress/compare/v2.0.0...v2.0.1
+[v2.1.0]: https://github.com/nmackey/accessible-nprogress/compare/v2.0.1...v2.1.0

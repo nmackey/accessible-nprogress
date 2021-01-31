@@ -18,8 +18,12 @@ export interface Settings {
     showSpinner?: boolean;
     /** Specify the selector for the progress bar element in the template. (default: 'div.bar') */
     barSelector?: string;
+    /** Specify the aria-label for the progress bar element in the template. (default: 'processing request') */
+    barLabel?: string;
     /** Specify the selector for the spinner element in the template. (default: 'div.spinner') */
     spinnerSelector?: string;
+    /** Specify the aria-label for the spinner element in the template. (default: 'processing request') */
+    spinnerLabel?: string;
     /** Specify this to change the parent container. (default: 'body') */
     parent?: string;
     /** You can change the markup using template. To keep the progress bar working, keep an element with class='bar' in there. See the default template for reference. */

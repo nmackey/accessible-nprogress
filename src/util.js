@@ -52,11 +52,14 @@ export function toBarPerc(value) {
 export function randomInc(status) {
   if (status >= 0 && status < 0.2) {
     return 0.1;
-  } else if (status >= 0.2 && status < 0.5) {
+  }
+  if (status >= 0.2 && status < 0.5) {
     return 0.04;
-  } else if (status >= 0.5 && status < 0.8) {
+  }
+  if (status >= 0.5 && status < 0.8) {
     return 0.02;
-  } else if (status >= 0.8 && status < 0.99) {
+  }
+  if (status >= 0.8 && status < 0.99) {
     return 0.005;
   }
   return 0;

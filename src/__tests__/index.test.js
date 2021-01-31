@@ -8,7 +8,9 @@ const defaults = {
   trickleSpeed: 200,
   showSpinner: true,
   barSelector: 'div.bar',
+  barLabel: 'processing request',
   spinnerSelector: 'div.spinner',
+  spinnerLabel: 'processing request',
   parent: 'body',
   template: `
     <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="1">
