@@ -1,12 +1,14 @@
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 
 const libraryName = 'accessible-nprogress';
 
 const BANNER = `
   ${(new Date()).toString()}
-  Accessible NProgress, (c) 2019 Nicholas Mackey - http://nmackey.com/accessible-nprogress
+  Accessible NProgress, (c) 2021 Nicholas Mackey - http://nmackey.com/accessible-nprogress
   @license MIT
 `;
 
@@ -18,22 +20,6 @@ const plugins = [
 ];
 
 if (process.env.NODE_ENV === 'production') {
-  plugins.push(new webpack.LoaderOptionsPlugin({
-    minimize: true,
-    debug: false,
-  }));
-  plugins.push(new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false,
-      drop_console: true,
-      unused: true,
-    },
-    output: {
-      ascii_only: true,
-    },
-    sourceMap: false,
-    mangle: true,
-  }));
   outputJs = `${libraryName}.min.js`;
   outputCss = `${libraryName}.min.css`;
 } else {
@@ -41,9 +27,10 @@ if (process.env.NODE_ENV === 'production') {
   outputCss = `${libraryName}.css`;
 }
 
-plugins.push(new ExtractTextPlugin(outputCss));
+plugins.push(new MiniCssExtractPlugin({ filename: outputCss }));
 
 const config = {
+  mode: process.env.NODE_ENV,
   entry: path.resolve('src/index.js'),
   output: {
     path: path.resolve('dist'),
@@ -72,20 +59,25 @@ const config = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: { minimize: process.env.NODE_ENV === 'production' },
-            },
-          ],
-        }),
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
     ],
   },
   plugins,
+  optimization: {
+    minimize: process.env.NODE_ENV === 'production',
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          format: {
+            comments: /^\**!|@preserve|@license|@cc_on/i,
+          },
+        },
+        extractComments: false,
+      }),
+      new CssMinimizerPlugin(),
+    ],
+  },
 };
 
 module.exports = config;
-

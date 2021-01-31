@@ -1,4 +1,6 @@
-import { assign, clamp, toBarPerc, queue, removeElement, randomInc } from '../util';
+import {
+  assign, clamp, toBarPerc, queue, removeElement, randomInc,
+} from '../util';
 
 describe('Accessible NProgress Utils', () => {
   describe('assign', () => {

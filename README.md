@@ -1,7 +1,7 @@
 Accessible NProgress
 =========
 
-[![Status](https://api.travis-ci.org/nmackey/accessible-nprogress.svg?branch=master)](http://travis-ci.org/nmackey/accessible-nprogress)
+[![Build Status](https://travis-ci.com/nmackey/accessible-nprogress.svg?branch=master)](https://travis-ci.com/nmackey/accessible-nprogress)
 [![npm version](https://img.shields.io/npm/v/accessible-nprogress.png)](https://npmjs.org/package/accessible-nprogress "View this project on npm")
 [![npm downloads](https://img.shields.io/npm/dm/accessible-nprogress.svg?style=flat-square)](http://npm-stat.com/charts.html?package=accessible-nprogress)
 
@@ -220,6 +220,20 @@ specify this to change the parent container. (default: `body`)
 NProgress.configure({ parent: '#container' });
 ~~~
 
+#### `barSelector` and `spinnerSelector`
+specify this to change the selectors for the bar and spinner. (default: `div.bar` & `div.spinner`)
+
+~~~ js
+NProgress.configure({ spinnerSelector: 'div.spin' });
+~~~
+
+#### `barLabel` and `spinnerLabel`
+specify this to change the aria-label for the bar and spinner. (default: `processing request`)
+
+~~~ js
+NProgress.configure({ barLabel: 'fetching data' });
+~~~
+
 Customization
 -------------
 
@@ -241,7 +255,7 @@ __Bugs and requests__: submit them through the project's issues tracker.<br>
 Thanks
 ------
 
-**Acessible NProgress** © 2019, Nicholas Mackey. Released under the [MIT License].<br>
+**Acessible NProgress** © 2021, Nicholas Mackey. Released under the [MIT License].<br>
 Authored and maintained by Nicholas Mackey with help from [contributors].
 
 [MIT License]: https://mit-license.org/
