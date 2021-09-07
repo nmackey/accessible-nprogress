@@ -1,3 +1,7 @@
+## [v2.1.1] - September 6, 2021
+
+fix: set `devtool: false` and update dependencies & build
+
 ## [v2.1.0] - January 31, 2021
 
 fix: add aria-label options with default and update dependencies & build
@@ -47,3 +51,4 @@ This is a feature release for fixing accessibility issues and creating a new npm
 [v2.0.0]: https://github.com/nmackey/accessible-nprogress/compare/v1.0.0...v2.0.0
 [v2.0.1]: https://github.com/nmackey/accessible-nprogress/compare/v2.0.0...v2.0.1
 [v2.1.0]: https://github.com/nmackey/accessible-nprogress/compare/v2.0.1...v2.1.0
+[v2.1.1]: https://github.com/nmackey/accessible-nprogress/compare/v2.1.0...v2.1.1

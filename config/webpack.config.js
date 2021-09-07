@@ -30,6 +30,7 @@ if (process.env.NODE_ENV === 'production') {
 plugins.push(new MiniCssExtractPlugin({ filename: outputCss }));
 
 const config = {
+  devtool: false,
   mode: process.env.NODE_ENV,
   entry: path.resolve('src/index.js'),
   output: {
