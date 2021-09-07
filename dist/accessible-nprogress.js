@@ -1,6 +1,6 @@
 /*!
  * 
- *   Mon Sep 06 2021 21:32:22 GMT-0500 (Central Daylight Time)
+ *   Mon Sep 06 2021 22:45:41 GMT-0500 (Central Daylight Time)
  *   Accessible NProgress, (c) 2021 Nicholas Mackey - http://nmackey.com/accessible-nprogress
  *   @license MIT
  *
@@ -15,7 +15,7 @@
 	else
 		root["NProgress"] = factory();
 })(self, function() {
-return /******/ (() => { // webpackBootstrap
+return /******/ (function() { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
@@ -23,16 +23,16 @@ return /******/ (() => { // webpackBootstrap
 /*!*********************!*\
   !*** ./src/util.js ***!
   \*********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "assign": () => (/* binding */ assign),
-/* harmony export */   "clamp": () => (/* binding */ clamp),
-/* harmony export */   "toBarPerc": () => (/* binding */ toBarPerc),
-/* harmony export */   "randomInc": () => (/* binding */ randomInc),
-/* harmony export */   "removeElement": () => (/* binding */ removeElement),
-/* harmony export */   "queue": () => (/* binding */ queue)
+/* harmony export */   "assign": function() { return /* binding */ assign; },
+/* harmony export */   "clamp": function() { return /* binding */ clamp; },
+/* harmony export */   "toBarPerc": function() { return /* binding */ toBarPerc; },
+/* harmony export */   "randomInc": function() { return /* binding */ randomInc; },
+/* harmony export */   "removeElement": function() { return /* binding */ removeElement; },
+/* harmony export */   "queue": function() { return /* binding */ queue; }
 /* harmony export */ });
 /**
  * Substitute for Object.assign()
@@ -150,7 +150,7 @@ var queue = function () {
 /*!************************!*\
   !*** ./src/styles.css ***!
   \************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
@@ -186,44 +186,41 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 		__webpack_require__.d = function(exports, definition) {
 /******/ 			for(var key in definition) {
 /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
+/******/ 	!function() {
 /******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
+/******/ 		__webpack_require__.r = function(exports) {
 /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	})();
+/******/ 	}();
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-(() => {
+!function() {
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ "./src/util.js");
 /* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles.css */ "./src/styles.css");
 
@@ -488,9 +485,8 @@ var NProgress = function NProgress() {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NProgress());
-})();
-
+/* harmony default export */ __webpack_exports__["default"] = (NProgress());
+}();
 __webpack_exports__ = __webpack_exports__["default"];
 /******/ 	return __webpack_exports__;
 /******/ })()

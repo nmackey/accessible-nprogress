@@ -44,6 +44,7 @@ const config = {
   resolve: {
     extensions: ['.js'],
   },
+  target: ['web', 'es5'],
   module: {
     rules: [
       {
